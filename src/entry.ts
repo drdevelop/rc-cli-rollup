@@ -1,4 +1,3 @@
-// import data from './data.json';
 import Picker from './Picker';
 import React from 'react';
 export * from './Picker';
