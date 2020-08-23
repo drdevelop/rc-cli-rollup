@@ -6,11 +6,13 @@ import babelPlugin from '@rollup/plugin-babel';
 // you can replace not exist variable of browser some variable,
 // for example global can replaced as window
 import replacePlugin from '@rollup/plugin-replace';
+// import htmlPlugin from '@rollup/plugin-html';
+// import eslintPlugin from 'rollup-plugin-eslint';
 
 export default {
-  input: './src/entry.ts',
+  input: 'src/index.tsx',
   output: {
-    file: './dist/entry.js',
+    file: 'release/index.js',
     format: 'umd',
     name: 'Abtest',
     globals: {
@@ -19,6 +21,7 @@ export default {
   },
   external: ['react'],
   plugins: [
+    // eslintPlugin(),
     commonjsPlugin(),
     nodeResolvePlugin(),
     jsonPlugin(),
@@ -26,9 +29,11 @@ export default {
     babelPlugin({
       babelHelpers: 'bundled',
       exclude: '**/node_modules/**',
+      runtimeHelpers: true,
     }),
     replacePlugin({
       global: 'window',
+      'process.env.NODE_ENV': 'window',
     }),
   ],
 }
